@@ -28,7 +28,7 @@ h1
 
 html 
 {
-    font-family: "Lucida Sans", sans-serif;
+    font-family: "Rockwell";
 }
 .header 
 {
@@ -152,4 +152,92 @@ span.countdown {
   .overlay-content.active {
     display: flex;
     z-index: 999; 
+}
+
+.level-container {
+  margin-top: 30px;
+  border: 4px ridge darkolivegreen;
+  padding: 10px;
+    line-height: 40px;
+    width: 300px;
+    font-size: 20px;
+    background-color: peachpuff;
+    font-family: rockwell;}
+  .level-container label:hover {
+    cursor: pointer; }
+
+button.outline-btn {
+  font-size: 14px;
+  width: 140px;
+  height: 36px;
+  margin-top: 30px;
+  color: #000000;
+  outline: 0;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  background-color: transparent; }
+
+span.countdown {
+  font-size: 60px;
+  font-weight: 600;
+  position: absolute;
+  border: 2px ridge blue;
+  top: 30px;
+  background-color: yellow;
+  left: 30px; }
+
+.overlay-content {
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex: none;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -999;
+  background-color: rgba(255, 255, 255, 0.9); }
+  .overlay-content .content-wrapper {
+    text-align: center;
+    align-self: center; }
+    .overlay-content .content-wrapper h1 {
+      font-size: 80px;
+      margin: 0; }
+  .overlay-content.active {
+    display: flex;
+    z-index: 999; }
+
+#ctimer{
+	position: absolute;
+	top: 200px;
+	left: 1000px;
+}
+
+#Sbutton{
+	position: absolute;
+	top: 130px;
+	left: 656px;
+	border: 4px groove indigo;
+}
+
+#scorediv{
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    border: 4px ridge darkcyan;
+    background-color: yellowgreen;
+
+}
+
+#turnsdiv{
+	 position: absolute;
+    top: 50px;
+    left: 1250px;
+    border: 4px ridge darkcyan;
+    background-color: yellowgreen;
+}
+
+#level-container{
+	position: relative;
+	top: 12px;
 }
