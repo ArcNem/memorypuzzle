@@ -1,14 +1,5 @@
 $(document).ready(function(){
 	initialise();
-	$("#reload").click(function(){
-		score=0;
-		clicks=0;
-		for(var i=0;i<usedAlpha.length;i++)
-			usedAlpha[i]=false;
-		for(var i=0;i<randBox.length;i++)
-			randBox[i]=false;
-		initialise();
-	});
 });
 
 var score=0;
@@ -19,6 +10,30 @@ var newAlpha=new Array(16);
 var card_values = [];
 var card_ids = [];
 var cards_flipped = 0;
+var started = false;
+var count=0;
+
+$(document).on('click', '#reset', function () {
+		score=0;
+		clicks=0;
+		for(var i=0;i<usedAlpha.length;i++)
+			usedAlpha[i]=false;
+		for(var i=0;i<randBox.length;i++)
+			randBox[i]=false;
+		initialise();
+		$("button").click(function(){
+    	$("button").removeClass("active");
+    	$("button").removeClass("overlay-content");
+});
+});
+
+$('#btnSubmit').click(function(){
+	$(this).val("Restart");
+	if(count!=0){
+	location.reload();
+	}
+	count++;
+});
 
 function timer()
 {
@@ -79,7 +94,7 @@ function Disable(id1,id2)
 
 function flipTILE()	
 {
-
+	if (started== true) {
 	val=$(this).children().children().text();
 	id=$(this).children().children().attr("id");
 
@@ -103,17 +118,26 @@ function flipTILE()
 				cards_flipped += 2;
 				Disable(card_ids[0] , card_ids[1]);
 				score+=10;
-				$("#score").text("score = "+(score-clicks));
+				$("#score").text("SCORE = "+(score-clicks));
 				card_values = [];
             	card_ids = [];
 				if(cards_flipped == 16)
 				{
-					$(".blank").text();
+					if(level == "beginner") {
+				$(".overlay-content .content-wrapper p").html("TRY MEDIUM LEVEL.");
+				} else if(level == "medium"){
+				$(".overlay-content .content-wrapper p").html("TRY EXPERT LEVEL.");
+				} else if(level == "expert"){
+				$(".overlay-content .content-wrapper p").html("YOU ARE AN EXPERT!");
+				}
+				$(".overlay-content .content-wrapper h1").html("CONGRATULATIONS!");
+				$(".overlay-content").addClass("active");
+				clearInterval(counter);
 				}
 			} 
 			else 
 			{
-				setTimeout(defaultstate, 800);
+				setTimeout(defaultstate, 500);
 			}
 		}
 		else if(card_values.length == 1 &&card_ids[0]==id)
@@ -122,6 +146,7 @@ function flipTILE()
 		}
 	}
 	$(".blank").text(score+"   "+clicks);
+}
 }
 function defaultstate()	
 {
@@ -151,14 +176,36 @@ function addTILES()
 	}
 	$('.container').html(card);
 }
+
 function initialise()
 {
 	addTILES();
 	newTILE();
-	$("#turns").text("Turns = "+clicks);
-	$("#score").text("score = "+(score-clicks));
+	$("#turns").text("TURNS = "+clicks);
+	$("#score").text("SCORE = "+(score-clicks));
 	for(var i=0;i<16;i++)
 	{
 		document.getElementsByClassName("box")[i].onclick=flipTILE;
 	}
 }
+
+$(".start-game").on("click", function() {
+	if($("input[type=radio]").is(":checked")) {
+		started = true;
+		level = $("input[type=radio]:checked").val();
+		if(level == "beginner") {
+			countdownTime = 61;
+		} else if(level == "medium") {
+			countdownTime = 41;
+		} else if(level == "expert") {
+			countdownTime = 21;
+		}
+		counter = setInterval(timer, 1000);
+		//$(".level-container").hide();
+
+	}
+});
+
+$('.reload').click(function() {
+    location.reload();
+});

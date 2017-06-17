@@ -3,24 +3,54 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image" href="lannister.ico">
-	<title> GAME OF TILES </title>
+	<link rel="shortcut icon" type="image" href="icon.png">
+	<title> HOUSE OF TILES </title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<div class="header">
-    <h1>Game of Tiles</h1>
+    <h1>House of Tiles</h1>
   </div>
     <div class="container" id="container"> 
     </div>
-    <div>
-    	<ul>
-        <li id="score"> Score :</li>
-        <li id="turns"></li>
-        <li id="reload">Restart </li>
-        <h3> IN DEVELOPMENT! </h3>
-      	</ul>
+    <div id="scorediv">
+        <text id="score"> Score :</text>
     </div>
+    <div id="turnsdiv">
+       	<text id="turns"></text>
+    </div>
+        <h3> IN DEVELOPMENT! </h3>
+    </div>
+    <div class="level-container" id="level-container">
+			<label>
+				<input type="radio" name="level" value="beginner">
+				<span>BEGINNER / 60 seconds</span>
+				<br>
+			</label>
+			<label>
+				<input type="radio" name="level" value="medium">
+				<span>MEDIUM / 40 seconds</span>
+				<br>
+			</label>
+			<label>
+				<input type="radio" name="level" value="expert">
+				<span>EXPERT / 20 seconds</span>
+			</label>
+			<br>
+			</div>
+			<div id="Sbutton">
+			<input type='button' value='START' class="outline-btn start-game" id='btnSubmit'>
+			</div>
+		<div id="ctimer">
+			<span class="countdown"></span>
+		</div>
+		<div class="overlay-content">
+		<div class="content-wrapper">
+			<h1>TIME'S UP!</h1>
+			<p></p>
+			<button class="outline-btn reload">START AGAIN!</button>
+		</div>
+	</div>
   	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="javascript.js"></script>
 </body>
